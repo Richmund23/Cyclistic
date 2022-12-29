@@ -138,23 +138,25 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	
 	SELECT
 		ride_id,
-		rideable_type,
-		started_at,
-		ended_at,
+	    rideable_type,
+	    started_at,
+	    ended_at,
 		ROUND(DATEDIFF(SECOND,started_at,ended_at)/60.0, 2, 2) AS ride_length_minutes,
 		CAST(DATENAME(m, started_at) AS nvarchar(3)) AS quarter_name,
 		CAST(DATENAME(m, started_at) AS nvarchar(3)) AS month_name,
 		day_of_week,
 		DATENAME(WEEKDAY, started_at) AS day_name,
-		start_station_name,
-		start_station_id,
-		end_station_name,
-		end_station_id,
-		start_lat,
-		start_lng,
-		end_lat,
-		end_lng,
-		member_casual AS rider_type
+	    start_station_name,
+	    start_station_id,
+	    end_station_name,
+	    end_station_id,
+	    start_lat,
+	    start_lng,
+	    end_lat,
+	    end_lng,
+	    member_casual AS rider_type
+	INTO
+		analyzetripdata
 	FROM
 		tripdata
 	
