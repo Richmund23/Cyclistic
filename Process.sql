@@ -167,4 +167,26 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 		tripdata
 	
 	
+	-- Update quarter_name column into Q1 (Jan – Mar), Q2 (Apr – Jun), Q3 (Jul – Sep), and Q4 (Oct – Dec).
+	
+	UPDATE
+		analyzetripdata
+
+	SET quarter_name =
+		CASE
+	    	WHEN quarter_name = 'Jan' THEN 'Q1'
+		WHEN quarter_name = 'Feb' THEN 'Q1'
+		WHEN quarter_name = 'Mar' THEN 'Q1'
+		WHEN quarter_name = 'Apr' THEN 'Q2'
+		WHEN quarter_name = 'May' THEN 'Q2'
+		WHEN quarter_name = 'Jun' THEN 'Q2'
+		WHEN quarter_name = 'Jul' THEN 'Q3'
+		WHEN quarter_name = 'Aug' THEN 'Q3'
+		WHEN quarter_name = 'Sep' THEN 'Q3'
+		WHEN quarter_name = 'Oct' THEN 'Q4'
+		WHEN quarter_name = 'Nov' THEN 'Q4'
+		WHEN quarter_name = 'Dec' THEN 'Q4'
+		END
+
+	
 	-- Proceed to next step: Analyze
