@@ -5,7 +5,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 
 -- PROCESS
 	-- Data Cleaning
-	-- Combining all tables into a single table
+	-- Combine all tables into a single table
   
 	SELECT *
 		INTO
