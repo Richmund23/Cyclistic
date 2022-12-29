@@ -136,12 +136,12 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 		start_station_name IS NULL OR
 		end_station_name IS NULL
 		
+		
 	-- Add the quarter_name column temporarily shown as month
 	-- Add the month_name column which contains the month the ride trips took place in mmm format
 	-- Update the ride_length column into ride_length_minutes column which contains the length of the ride trips in minutes
 	-- Rename member_casual column as rider_type
 
-	
 	SELECT
 		ride_id,
 	    rideable_type,
@@ -165,5 +165,6 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 		analyzetripdata
 	FROM
 		tripdata
+	
 	
 	-- Proceed to next step: Analyze
