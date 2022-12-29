@@ -101,23 +101,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	GROUP BY
 		rider_type
 		
-		
-	-- Ride Length
-	-- Explore Ride Length by bike type
 	
-	SELECT
-		bike_type,
-		CAST(AVG(ride_length_minutes) AS decimal(10,2)) AS average,
-		CAST(MIN(ride_length_minutes) AS decimal(10,2)) AS minimum,
-		CAST(MAX(ride_length_minutes) AS decimal(10,2)) AS maximum
-	INTO
-		ridelength_by_biketype
-	FROM
-		analyzetripdata
-	GROUP BY
-		bike_type
-		
-		
 	-- Explore Ride Length by quarter
 	
 	SELECT
@@ -310,6 +294,90 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 		rider_type,
 		day_of_week,
 		ride_trips DESC
+		
+		
+	-- Explore Total Ride Trips per Hour
+	
+	SELECT
+		day_name,
+		hour_name,
+		SUM(ride_trips) AS total_ride_trips
+	INTO
+		ridetripsperhour
+	FROM
+		peakhours
+	WHERE
+		rider_type = 'casual'
+	GROUP BY
+		day_of_week,
+		day_name,
+		hour_name
+	ORDER BY
+		day_of_week,
+		hour_name
 	
 	
+	-- Explore Bike Type
+	-- Ride Length by Bike Type
 	
+	SELECT
+		bike_type,
+		CAST(AVG(ride_length_minutes) AS decimal(10,2)) AS average,
+		CAST(MIN(ride_length_minutes) AS decimal(10,2)) AS minimum,
+		CAST(MAX(ride_length_minutes) AS decimal(10,2)) AS maximum
+	INTO
+		ridelength_by_biketype
+	FROM
+		analyzetripdata
+	GROUP BY
+		bike_type
+		
+		
+	-- Bike Type by Rider Type
+	
+	SELECT
+		rider_type,
+		bike_type,
+		COUNT(*) AS riders
+	INTO
+		biketype_by_ridertype
+	FROM
+		analyzetripdata
+	GROUP BY
+		rider_type,
+		bike_type
+	ORDER BY
+		rider_type,
+		bike_type
+		
+	
+	-- Location
+	-- Top Starting Stations
+	
+	SELECT
+		start_station_name,
+		COUNT(*) AS casual_rides
+	INTO
+		startstations
+	FROM
+		analyzetripdata
+	GROUP BY
+		start_station_name
+	ORDER BY
+		COUNT(*) DESC
+		
+		
+	-- Location
+	-- Top Ending Stations
+	
+	SELECT
+		end_station_name,
+		COUNT(*) AS casual_rides
+	INTO
+		endstations
+	FROM
+		analyzetripdata
+	GROUP BY
+		end_station_name
+	ORDER BY
+		COUNT(*) DESC
