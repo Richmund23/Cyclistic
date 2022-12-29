@@ -119,71 +119,75 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 		
 		
 	-- Explore Ride Length by quarter
-	-- [rider type] : 'member' or 'casual'
 	
-	SELECT 
+	SELECT
 		rider_type,
 		quarter_name,
-		AVG(ride_length_minutes) AS avg_ride_length
+		CAST(AVG(ride_length_minutes) AS decimal(10 , 2)) AS avg_ride_length
 	INTO
-		ridelength_by_quarter_[rider type]
+		ridelength_by_quarter
 	FROM
 		analyzetripdata
 	WHERE
-		rider_type = '[rider type]'
+		rider_type = 'casual' OR
+		rider_type = 'member'
 	GROUP BY
 		rider_type,
 		quarter_name
 	ORDER BY
+		rider_type,
 		quarter_name
 		
 	
 	-- Explore Ride Length by month
-	-- '[rider type]' : 'member' or 'casual'
-	SELECT 
+	
+	SELECT
+		rider_type,
 		month_name,
-		AVG(ride_length_minutes) AS avg_ride_length_[rider type]
+		CAST(AVG(ride_length_minutes) AS decimal(10 , 2)) AS avg_ride_length
 	INTO
-		ridelength_by_month_[rider type]
+		ridelength_by_month
 	FROM
 		analyzetripdata
 	WHERE
-		rider_type = '[rider type]'
+		rider_type = 'casual' OR
+		rider_type = 'member'
 	GROUP BY
 		rider_type,
 		month_name
 	ORDER BY
+		rider_type,
 		month_name
 	
 		
 	-- Explore Ride Length by day
-	-- '[rider type]' : 'member' or 'casual'
 	
-	SELECT 
+	SELECT
+		rider_type,
 		day_of_week,
 		day_name,
-		AVG(ride_length_minutes) AS avg_ride_length_[rider type]
+		CAST(AVG(ride_length_minutes) AS decimal(10 , 2)) AS avg_ride_length
 	INTO
-		ridelength_by_day_[rider type]
+		ridelength_by_day
 	FROM
 		analyzetripdata
 	WHERE
-		rider_type = '[rider type]'
+		rider_type = 'casual' OR
+		rider_type = 'member'
 	GROUP BY
 		rider_type,
 		day_of_week,
 		day_name
 	ORDER BY
+		rider_type,
 		day_of_week
 		
 	
-	-- Explore Number of Rides
-	-- '[rider type]' : 'member' or 'casual'
+	-- Explore Number of Rides by rider_type
 		
-	
 	SELECT
 		rider_type,
-	COUNT(*) AS ride_trips
+		COUNT(*) AS ride_trips
 	INTO
 		ridetrips_by_ridertype
 	FROM
@@ -193,61 +197,119 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 		
 		
 	-- Explore Number of Rides by quarter
-	-- '[rider type]' : 'member' or 'casual'
-
+	
 	SELECT
 		rider_type,
 		quarter_name,		
 		COUNT(*) AS ride_trips
 	INTO
-		ridetrips_by_quarter_[rider type]
+		ridetrips_by_quarter
 	FROM
 		analyzetripdata
 	WHERE
-		rider_type = '[rider type]'
+		rider_type = 'casual' OR
+		rider_type = 'member'
 	GROUP BY
 		rider_type,
 		quarter_name
 	ORDER BY
+		rider_type,
 		quarter_name
 		
+		
 	-- Explore Number of Rides by month
-	-- '[rider type]' : 'member' or 'casual'
 
 	SELECT
 		rider_type,
 		month_name,		
 		COUNT(*) AS ride_trips
 	INTO
-		ridetrips_by_month_[rider type]
+		ridetrips_by_month
 	FROM
 		analyzetripdata
 	WHERE
-		rider_type = '[rider type]'
+		rider_type = 'casual' OR
+		rider_type = 'member'
 	GROUP BY
 		rider_type,
 		month_name
 	ORDER BY
+		rider_type,
 		month_name
 		
 
 	-- Explore Number of Rides by day
-	-- '[rider type]' : 'member' or 'casual'
 	
 	SELECT
 		rider_type,
-		month_name,		
+		day_of_week,
+		day_name,		
 		COUNT(*) AS ride_trips
 	INTO
-		ridetrips_by_month_[rider type]
+		ridetrips_by_day
 	FROM
 		analyzetripdata
 	WHERE
-		rider_type = '[rider type]'
+		rider_type = 'casual' OR
+		rider_type = 'member'
 	GROUP BY
 		rider_type,
-		month_name
+		day_of_week,
+		day_name
 	ORDER BY
-		month_name
+		rider_type,
+		day_of_week,
+		day_name
+	
+	
+	-- Explore Day of Week
+	
+	SELECT  
+    	rider_type,
+		day_of_week,
+		day_name,
+    	COUNT(DISTINCT ride_id) AS FullYear,
+		SUM(CASE WHEN quarter_name = 'Q1' THEN 1 ELSE 0 END) AS Q1,
+		SUM(CASE WHEN quarter_name = 'Q2' THEN 1 ELSE 0 END) AS Q2,
+		SUM(CASE WHEN quarter_name = 'Q3' THEN 1 ELSE 0 END) AS Q3,
+		SUM(CASE WHEN quarter_name = 'Q4' THEN 1 ELSE 0 END) AS Q4
+	INTO
+		dayofweek_full_quarter	
+	FROM 
+    	analyzetripdata
+	GROUP BY 
+    	rider_type,
+		day_of_week,
+		day_name
+	ORDER BY
+		rider_type,
+    	day_of_week
+	
+	
+	-- Explore Peak Hours
+	
+	SELECT
+		rider_type,
+		day_of_week,
+		day_name,
+		DATEPART(hh, started_at) AS hour_name,
+		COUNT(*) AS ride_trips
+	INTO
+		peakhours
+	FROM
+		analyzetripdata
+	WHERE
+		rider_type = 'casual' OR
+		rider_type = 'member'
+	GROUP BY
+		rider_type,
+		day_of_week,
+		day_name,
+		started_at
+	ORDER BY
+		rider_type,
+		day_of_week,
+		ride_trips DESC
+	
 	
 	
