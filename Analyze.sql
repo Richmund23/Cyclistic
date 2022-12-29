@@ -352,15 +352,17 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 		
 	
 	-- Location
-	-- Top Starting Stations
+	-- Top Starting Stations for Casual Riders
 	
 	SELECT
 		start_station_name,
 		COUNT(*) AS casual_rides
 	INTO
-		startstations
+		startstations_casual
 	FROM
 		analyzetripdata
+	WHERE
+		rider_type = 'casual'
 	GROUP BY
 		start_station_name
 	ORDER BY
@@ -368,16 +370,86 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 		
 		
 	-- Location
-	-- Top Ending Stations
+	-- Top Ending Stations for Casual Riders
 	
 	SELECT
 		end_station_name,
 		COUNT(*) AS casual_rides
 	INTO
-		endstations
+		endstations_casual
 	FROM
 		analyzetripdata
+	WHERE
+		rider_type = 'casual'
 	GROUP BY
 		end_station_name
 	ORDER BY
 		COUNT(*) DESC
+		
+	-- Location
+	-- Top Starting Stations for Members
+	
+	SELECT
+		start_station_name,
+		COUNT(*) AS member_rides
+	INTO
+		startstations_member
+	FROM
+		analyzetripdata
+	WHERE
+		rider_type = 'member'
+	GROUP BY
+		start_station_name
+	ORDER BY
+		COUNT(*) DESC
+		
+	-- Location
+	-- Top Ending Stations for Members
+	
+	SELECT
+		end_station_name,
+		COUNT(*) AS member_rides
+	INTO
+		endstations_member
+	FROM
+		analyzetripdata
+	WHERE
+		rider_type = 'member'
+	GROUP BY
+		end_station_name
+	ORDER BY
+		COUNT(*) DESC
+
+
+	-- Location
+	-- Top Stations for Casual Riders
+	
+	SELECT
+		start_station_name AS station_name,
+		startstations_casual.casual_rides +
+		endstations_casual.casual_rides AS total_casual_visits
+	INTO
+		topstations_casual
+	FROM
+		startstations_casual
+	    JOIN endstations_casual
+	    ON start_station_name = end_station_name
+	ORDER BY
+		total_casual_visits DESC
+		
+		
+	-- Location
+	-- Top Stations for Members
+	
+	SELECT
+		start_station_name AS station_name,
+		startstations_member.member_rides +
+		endstations_member.member_rides AS total_member_visits
+	INTO
+		topstations_member
+	FROM
+		startstations_member
+	    JOIN endstations_member
+	    ON start_station_name = end_station_name
+	ORDER BY
+		total_member_visits DESC
