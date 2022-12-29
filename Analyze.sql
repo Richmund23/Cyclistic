@@ -84,3 +84,35 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 		CAST(MAX(ride_length_minutes) AS decimal(10,2)) AS maximum
 	FROM
 		analyzetripdata
+
+
+	-- Ride Length
+	-- Explore Ride Length by rider_type
+	
+	SELECT
+		rider_type,
+		CAST(AVG(ride_length_minutes) AS decimal(10,2)) AS average,
+		CAST(MIN(ride_length_minutes) AS decimal(10,2)) AS minimum,
+		CAST(MAX(ride_length_minutes) AS decimal(10,2)) AS maximum
+	INTO
+		ridelength_by_ridertype
+	FROM
+		analyzetripdata
+	GROUP BY
+		rider_type
+		
+		
+	-- Ride Length
+	-- Explore Ride Length by bike_type
+	
+	SELECT
+		bike_type,
+		CAST(AVG(ride_length_minutes) AS decimal(10,2)) AS average,
+		CAST(MIN(ride_length_minutes) AS decimal(10,2)) AS minimum,
+		CAST(MAX(ride_length_minutes) AS decimal(10,2)) AS maximum
+	INTO
+		ridelength_by_biketype
+	FROM
+		analyzetripdata
+	GROUP BY
+		bike_type
