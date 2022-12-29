@@ -138,11 +138,13 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	-- Add the quarter_name column temporarily shown as month
 	-- Add the month_name column which contains the month the ride trips took place in mmm format
 	-- Add the day_name column
+	-- Rename rideable_type column as bike_type
 	-- Rename member_casual column as rider_type
+
 
 	SELECT
 		ride_id,
-		rideable_type,
+		rideable_type AS bike_type,
 		started_at,
 		ended_at,
 		ROUND(DATEDIFF(SECOND,started_at,ended_at)/60.0, 2, 2) AS ride_length_minutes,
