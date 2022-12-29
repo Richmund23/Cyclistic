@@ -432,8 +432,8 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 		topstations_casual
 	FROM
 		startstations_casual
-	    JOIN endstations_casual
-	    ON start_station_name = end_station_name
+		JOIN endstations_casual
+		ON start_station_name = end_station_name
 	ORDER BY
 		total_casual_visits DESC
 		
@@ -449,7 +449,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 		topstations_member
 	FROM
 		startstations_member
-	    JOIN endstations_member
-	    ON start_station_name = end_station_name
+		JOIN endstations_member
+		ON start_station_name = end_station_name
 	ORDER BY
 		total_member_visits DESC
