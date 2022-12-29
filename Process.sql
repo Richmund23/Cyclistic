@@ -119,27 +119,25 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	FROM
 		tripdata
 	WHERE
-		start_station_name ='' OR
-		end_station_name = '' OR
-		start_station_name IS NULL OR
-		end_station_name IS NULL
+		[column name] ='' OR
+		[column name] IS NULL
 	
 	
 	-- Delete blank entries
+	-- [column name]: ALL columns
 	
 	DELETE
 	FROM
 		tripdata
 	WHERE
-		start_station_name ='' OR
-		end_station_name = '' OR
-		start_station_name IS NULL OR
-		end_station_name IS NULL
+		[column name] ='' OR
+		[column name] IS NULL
 		
 		
+	-- Update the ride_length column into ride_length_minutes column which contains the length of the ride trips in minutes
 	-- Add the quarter_name column temporarily shown as month
 	-- Add the month_name column which contains the month the ride trips took place in mmm format
-	-- Update the ride_length column into ride_length_minutes column which contains the length of the ride trips in minutes
+	-- Add the day_name column
 	-- Rename member_casual column as rider_type
 
 	SELECT
