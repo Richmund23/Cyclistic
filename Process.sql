@@ -73,6 +73,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 			cyclistic.dbo.Dec$
 		) a
 		
+		
 	-- Check for misspellings and irregularities
 	-- [column string]: rideable_type, start_station_name, start_station_id, end_station_name, end_station_id, member_casual
   
@@ -81,4 +82,35 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	FROM
 		tripdata
 		
-	--
+		
+	-- Check for duplicates in ride_id column
+	
+	SELECT 
+		ride_id,
+	COUNT(ride_id)
+	FROM 
+		tripdata
+	GROUP BY ride_id
+	HAVING COUNT(ride_id) > 1
+
+
+	-- Delete duplicates
+	
+	WITH cte AS (
+    SELECT 
+        ride_id, 
+        ROW_NUMBER() OVER (
+            PARTITION BY 
+				ride_id
+            ORDER BY 
+                ride_id
+        ) row_num
+     FROM 
+        tripdata
+		)
+	DELETE FROM cte
+	WHERE row_num > 1;
+	
+	
+	-- 
+	
