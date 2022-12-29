@@ -97,17 +97,17 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	-- Delete duplicates
 	
 	WITH cte AS (
-    SELECT 
-        ride_id, 
-        ROW_NUMBER() OVER (
-            PARTITION BY 
-				ride_id
-            ORDER BY 
-                ride_id
-        ) row_num
-     FROM 
-        tripdata
-		)
+	SELECT 
+		ride_id, 
+		ROW_NUMBER() OVER (
+		PARTITION BY 
+		ride_id
+	ORDER BY 
+		ride_id
+		) row_num
+	FROM 
+		tripdata
+	)
 	DELETE FROM cte
 	WHERE row_num > 1;
 	
@@ -115,10 +115,14 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	-- Check for blank entries
 	-- [column name]: ALL columns
 	
+	SELECT *
 	FROM
 		tripdata
 	WHERE
-		[column name] IS NULL;
+		start_station_name ='' OR
+		end_station_name = '' OR
+		start_station_name IS NULL OR
+		end_station_name IS NULL
 	
 	
 	-- Delete blank entries
@@ -127,13 +131,15 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	FROM
 		tripdata
 	WHERE
-		start_station_name IS NULL;
+		start_station_name ='' OR
+		end_station_name = '' OR
+		start_station_name IS NULL OR
+		end_station_name IS NULL
 		
-		
-	-- Added the quarter_name column temporarily shown as month
-	-- Added the month_name column which contains the month the ride trips took place in mmm format
-	-- Updated the ride_length column into ride_length_minutes column which contains the length of the ride trips in minutes
-	-- Renamed member_casual column as rider_type
+	-- Add the quarter_name column temporarily shown as month
+	-- Add the month_name column which contains the month the ride trips took place in mmm format
+	-- Update the ride_length column into ride_length_minutes column which contains the length of the ride trips in minutes
+	-- Rename member_casual column as rider_type
 
 	
 	SELECT
