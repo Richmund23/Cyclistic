@@ -303,6 +303,8 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 		day_name,
 		hour_name,
 		SUM(ride_trips) AS total_ride_trips
+	INTO
+		ridetripsperhour
 	FROM
 		cyclistic.dbo.peakhours
 	GROUP BY
