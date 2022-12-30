@@ -299,20 +299,19 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	-- Explore Total Ride Trips per Hour
 	
 	SELECT
+		rider_type,
 		day_name,
 		hour_name,
 		SUM(ride_trips) AS total_ride_trips
-	INTO
-		ridetripsperhour
 	FROM
-		peakhours
-	WHERE
-		rider_type = 'casual'
+		cyclistic.dbo.peakhours
 	GROUP BY
+		rider_type,
 		day_of_week,
 		day_name,
 		hour_name
 	ORDER BY
+		rider_type,
 		day_of_week,
 		hour_name
 	
