@@ -249,7 +249,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	-- Explore Day of Week
 	
 	SELECT  
-    	rider_type,
+    		rider_type,
 		day_of_week,
 		day_name,
     	COUNT(DISTINCT ride_id) AS FullYear,
@@ -260,14 +260,14 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	INTO
 		dayofweek_full_quarter	
 	FROM 
-    	analyzetripdata
+    		analyzetripdata
 	GROUP BY 
-    	rider_type,
+    		rider_type,
 		day_of_week,
 		day_name
 	ORDER BY
 		rider_type,
-    	day_of_week
+    		day_of_week
 	
 	
 	-- Explore Peak Hours
@@ -306,7 +306,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	INTO
 		ridetripsperhour
 	FROM
-		cyclistic.dbo.peakhours
+		peakhours
 	GROUP BY
 		rider_type,
 		day_of_week,
