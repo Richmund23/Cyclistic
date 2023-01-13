@@ -15,62 +15,62 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 		SELECT
 		*
 		FROM
-			cyclistic.dbo.Jan$
+			CyclisticAnalysis.dbo.Jan$
 		UNION ALL
 		SELECT
 		*
 		FROM
-			cyclistic.dbo.Feb$
+			CyclisticAnalysis.dbo.Feb$
 		UNION ALL
 		SELECT
 		*
 		FROM
-			cyclistic.dbo.Mar$
+			CyclisticAnalysis.dbo.Mar$
 		UNION ALL
 		SELECT
 		*
 		FROM
-			cyclistic.dbo.Apr$
+			CyclisticAnalysis.dbo.Apr$
 		UNION ALL
 		SELECT
 		*
 		FROM
-			cyclistic.dbo.May$
+			CyclisticAnalysis.dbo.May$
 		UNION ALL
 		SELECT
 		*
 		FROM
-			cyclistic.dbo.Jun$
+			CyclisticAnalysis.dbo.Jun$
 		UNION ALL
 		SELECT
 		*
 		FROM
-			cyclistic.dbo.Jul$
+			CyclisticAnalysis.dbo.Jul$
 		UNION ALL
 		SELECT
 		*
 		FROM
-			cyclistic.dbo.Aug$
+			CyclisticAnalysis.dbo.Aug$
 		UNION ALL
 		SELECT
 		*
 		FROM
-			cyclistic.dbo.Sep$
+			CyclisticAnalysis.dbo.Sep$
 		UNION ALL
 		SELECT
 		*
 		FROM
-			cyclistic.dbo.Oct$
+			CyclisticAnalysis.dbo.Oct$
 		UNION ALL
 		SELECT
 		*
 		FROM
-			cyclistic.dbo.Nov$
+			CyclisticAnalysis.dbo.Nov$
 		UNION ALL
 		SELECT
 		*
 		FROM
-			cyclistic.dbo.Dec$
+			CyclisticAnalysis.dbo.Dec$
 		) a
 		
 		
