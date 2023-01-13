@@ -15,7 +15,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 		AnalyzeTripData
 		
 		
-	-- Check for negative ride lengths
+	-- Check for negative and zero ride lengths
 	
 	SELECT
 		started_at,
@@ -26,7 +26,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	FROM
 		AnalyzeTripData
 	WHERE
-		ride_length_minutes < 0
+		ride_length_minutes <= 0
 		
 		
 	-- Check for ride lengths that lasted more than 24 hours
@@ -37,17 +37,19 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 		start_station_name,
 		end_station_name,
 		ride_length_minutes
+	FROM
+		AnalyzeTripData
 	WHERE
 		ride_length_minutes > 1440
 		
 		
-	-- Delete irrelevant ride lengths
+	-- Delete irrelevant ride lengths including 1 minute or less ride trips
 	
 	DELETE
 	FROM
 		AnalyzeTripData
 	WHERE
-		ride_length_minutes < 0 OR
+		ride_length_minutes <= 1 OR
 		ride_length_minutes > 1440
 	
 	
