@@ -12,7 +12,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 		MIN(ride_length_minutes) AS min,
 		MAX(ride_length_minutes) AS max
 	FROM
-		analyzetripdata
+		AnalyzeTripData
 		
 		
 	-- Check for negative ride lengths
@@ -24,7 +24,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 		end_station_name,
 		ride_length_minutes
 	FROM
-		analyzetripdata
+		AnalyzeTripData
 	WHERE
 		ride_length_minutes < 0
 		
@@ -45,7 +45,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	
 	DELETE
 	FROM
-		analyzetripdata
+		AnalyzeTripData
 	WHERE
 		ride_length_minutes < 0 OR
 		ride_length_minutes > 1440
@@ -60,7 +60,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 		end_station_name,
 		ride_length_minutes
 	FROM
-		analyzetripdata
+		AnalyzeTripData
 	WHERE
 		ride_length_minutes < 1 AND
 		start_station_name = end_station_name
@@ -70,7 +70,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	
 	DELETE
 	FROM
-		analyzetripdata
+		AnalyzeTripData
 	WHERE
 		ride_length_minutes < 1 AND
 		start_station_name = end_station_name
@@ -83,7 +83,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 		CAST(MIN(ride_length_minutes) AS decimal(10,2)) AS minimum,
 		CAST(MAX(ride_length_minutes) AS decimal(10,2)) AS maximum
 	FROM
-		analyzetripdata
+		AnalyzeTripData
 
 
 	-- Ride Length
@@ -97,7 +97,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	INTO
 		ridelength_by_ridertype
 	FROM
-		analyzetripdata
+		AnalyzeTripData
 	GROUP BY
 		rider_type
 		
@@ -111,7 +111,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	INTO
 		ridelength_by_quarter
 	FROM
-		analyzetripdata
+		AnalyzeTripData
 	WHERE
 		rider_type = 'casual' OR
 		rider_type = 'member'
@@ -132,7 +132,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	INTO
 		ridelength_by_month
 	FROM
-		analyzetripdata
+		AnalyzeTripData
 	WHERE
 		rider_type = 'casual' OR
 		rider_type = 'member'
@@ -154,7 +154,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	INTO
 		ridelength_by_day
 	FROM
-		analyzetripdata
+		AnalyzeTripData
 	WHERE
 		rider_type = 'casual' OR
 		rider_type = 'member'
@@ -175,7 +175,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	INTO
 		ridetrips_by_ridertype
 	FROM
-		analyzetripdata
+		AnalyzeTripData
 	GROUP BY
 		rider_type
 		
@@ -189,7 +189,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	INTO
 		ridetrips_by_quarter
 	FROM
-		analyzetripdata
+		AnalyzeTripData
 	WHERE
 		rider_type = 'casual' OR
 		rider_type = 'member'
@@ -210,7 +210,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	INTO
 		ridetrips_by_month
 	FROM
-		analyzetripdata
+		AnalyzeTripData
 	WHERE
 		rider_type = 'casual' OR
 		rider_type = 'member'
@@ -232,7 +232,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	INTO
 		ridetrips_by_day
 	FROM
-		analyzetripdata
+		AnalyzeTripData
 	WHERE
 		rider_type = 'casual' OR
 		rider_type = 'member'
@@ -260,7 +260,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	INTO
 		dayofweek_full_quarter	
 	FROM 
-    		analyzetripdata
+    		AnalyzeTripData
 	GROUP BY 
     		rider_type,
 		day_of_week,
@@ -281,7 +281,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	INTO
 		peakhours
 	FROM
-		analyzetripdata
+		AnalyzeTripData
 	WHERE
 		rider_type = 'casual' OR
 		rider_type = 'member'
@@ -329,7 +329,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	INTO
 		ridelength_by_biketype
 	FROM
-		analyzetripdata
+		AnalyzeTripData
 	GROUP BY
 		bike_type
 		
@@ -343,7 +343,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	INTO
 		biketype_by_ridertype
 	FROM
-		analyzetripdata
+		AnalyzeTripData
 	GROUP BY
 		rider_type,
 		bike_type
@@ -361,7 +361,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	INTO
 		startstations_casual
 	FROM
-		analyzetripdata
+		AnalyzeTripData
 	WHERE
 		rider_type = 'casual'
 	GROUP BY
@@ -379,7 +379,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	INTO
 		endstations_casual
 	FROM
-		analyzetripdata
+		AnalyzeTripData
 	WHERE
 		rider_type = 'casual'
 	GROUP BY
@@ -396,7 +396,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	INTO
 		startstations_member
 	FROM
-		analyzetripdata
+		AnalyzeTripData
 	WHERE
 		rider_type = 'member'
 	GROUP BY
@@ -413,7 +413,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	INTO
 		endstations_member
 	FROM
-		analyzetripdata
+		AnalyzeTripData
 	WHERE
 		rider_type = 'member'
 	GROUP BY
