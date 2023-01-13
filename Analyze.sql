@@ -318,6 +318,56 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 		rider_type,
 		day_of_week,
 		hour_name
+		
+		
+	-- Explore Total Ride Trips per Hour (Weekends)
+	
+	SELECT
+		rider_type,
+		day_name,
+		hour_name,
+		SUM(ride_trips) AS total_ride_trips
+	INTO
+		ridetripsweekends
+	FROM
+		peakhours
+	WHERE
+		day_of_week = 1 OR
+		day_of_week = 7
+	GROUP BY
+		rider_type,
+		day_of_week,
+		day_name,
+		hour_name
+	ORDER BY
+		rider_type,
+		day_of_week,
+		hour_name
+		
+		
+	-- Explore Total Ride Trips per Hour (Weekdays)
+		
+	SELECT
+		rider_type,
+		day_name,
+		hour_name,
+		SUM(ride_trips) AS total_ride_trips
+	INTO
+		ridetripsweekdays
+	FROM
+		peakhours
+	WHERE
+		day_of_week != 1 AND
+		day_of_week != 7
+	GROUP BY
+		rider_type,
+		day_of_week,
+		day_name,
+		hour_name
+	ORDER BY
+		rider_type,
+		day_of_week,
+		hour_name
 	
 	
 	-- Explore Bike Type
