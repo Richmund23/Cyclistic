@@ -93,7 +93,27 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	GROUP BY ride_id
 	HAVING COUNT(ride_id) > 1
 
+	
+	-- Check for irrelevent data
+	
+	SELECT *
+	FROM
+		TripData
+	WHERE
+		start_station_id LIKE 'charg%' OR
+		end_station_id LIKE 'charg%'
+		
 
+	-- Delete irrelevant data
+	
+	DELETE
+	FROM
+		TripData
+	WHERE
+		start_station_id LIKE 'charg%' OR
+		end_station_id LIKE 'charg%'
+	
+	
 	-- Delete duplicates
 	
 	WITH cte AS (
