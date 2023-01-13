@@ -9,7 +9,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
   
 	SELECT *
 		INTO
-			tripdata
+			TripData
 		FROM
 		(
 		SELECT
@@ -80,7 +80,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	SELECT DISTINCT 
 		[column string]
 	FROM
-		tripdata
+		TripData
 		
 		
 	-- Check for duplicates in ride_id column
@@ -89,7 +89,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 		ride_id,
 	COUNT(ride_id)
 	FROM 
-		tripdata
+		TripData
 	GROUP BY ride_id
 	HAVING COUNT(ride_id) > 1
 
@@ -106,7 +106,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 		ride_id
 		) row_num
 	FROM 
-		tripdata
+		TripData
 	)
 	DELETE FROM cte
 	WHERE row_num > 1;
@@ -117,7 +117,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	
 	SELECT *
 	FROM
-		tripdata
+		TripData
 	WHERE
 		[column name] ='' OR
 		[column name] IS NULL
@@ -128,7 +128,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	
 	DELETE
 	FROM
-		tripdata
+		TripData
 	WHERE
 		[column name] ='' OR
 		[column name] IS NULL
@@ -162,15 +162,15 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 		end_lng,
 		member_casual AS rider_type
 	INTO
-		analyzetripdata
+		AnalyzeTripData
 	FROM
-		tripdata
+		TripData
 	
 	
 	-- Update quarter_name column into Q1 (Jan – Mar), Q2 (Apr – Jun), Q3 (Jul – Sep), and Q4 (Oct – Dec).
 	
 	UPDATE
-		analyzetripdata
+		AnalyzeTripData
 
 	SET quarter_name =
 		CASE
