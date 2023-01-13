@@ -254,7 +254,7 @@ CYCLISTIC BIKE-SHARE ANALYSIS
     		rider_type,
 		day_of_week,
 		day_name,
-    	COUNT(DISTINCT ride_id) AS FullYear,
+    		COUNT(DISTINCT ride_id) AS FullYear,
 		SUM(CASE WHEN quarter_name = 'Q1' THEN 1 ELSE 0 END) AS Q1,
 		SUM(CASE WHEN quarter_name = 'Q2' THEN 1 ELSE 0 END) AS Q2,
 		SUM(CASE WHEN quarter_name = 'Q3' THEN 1 ELSE 0 END) AS Q3,
