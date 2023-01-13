@@ -94,15 +94,18 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	HAVING COUNT(ride_id) > 1
 
 	
-	-- Check for irrelevent data
+	-- Check for irrelevant data
 	
 	SELECT *
 	FROM
 		TripData
 	WHERE
-		start_station_id LIKE 'charg%' OR
-		end_station_id LIKE 'charg%'
-		
+		start_station_id LIKE '%charg%' OR
+		end_station_id LIKE '%charg%' OR
+		start_station_id LIKE '%test%' OR
+		end_station_id LIKE '%test%' OR
+		start_station_id LIKE '%ware%' OR
+		end_station_id LIKE '%ware%'
 
 	-- Delete irrelevant data
 	
@@ -110,8 +113,12 @@ CYCLISTIC BIKE-SHARE ANALYSIS
 	FROM
 		TripData
 	WHERE
-		start_station_id LIKE 'charg%' OR
-		end_station_id LIKE 'charg%'
+		start_station_id LIKE '%charg%' OR
+		end_station_id LIKE '%charg%' OR
+		start_station_id LIKE '%test%' OR
+		end_station_id LIKE '%test%' OR
+		start_station_id LIKE '%ware%' OR
+		end_station_id LIKE '%ware%'
 	
 	
 	-- Delete duplicates
